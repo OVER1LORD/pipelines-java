@@ -11,7 +11,7 @@ pipeline {
             steps {
                 // Get some code from a GitHub repository
             git branch:'main',
-                url:'https://gitlab.com/OVER1LORD/tomcatwebhookdeploy.git'
+                url:'https://github.com/OVER1LORD/pipelines-java.git'
 
             }            
         }
@@ -33,7 +33,7 @@ pipeline {
                     path: '',
                     url: 'http://172.174.237.187:8088/'
                 )],
-                contextPath: 'overlord',
+                contextPath: 'Question-3',
                 onFailure: 'false',
                 war: '**/*.war'
             }
