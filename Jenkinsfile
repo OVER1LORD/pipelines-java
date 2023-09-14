@@ -26,6 +26,9 @@ pipeline {
         }
 
         stage('Deploy') {
+            when {
+                main 'main'
+            }
             steps {
                 echo "Deploy stage started >>>>"
                 deploy adapters: [tomcat9 (
