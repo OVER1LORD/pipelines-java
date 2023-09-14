@@ -11,7 +11,7 @@ pipeline {
             steps {
                 // Get some code from a GitHub repository
                 git branch: 'main',
-                    url: 'https://gitlab.com/nanu1605/pipelines-java.git'
+                    url: 'https://github.com/OVER1LORD/pipelines-java.git'
             }
         }
         stage('Build') {
