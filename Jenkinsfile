@@ -27,7 +27,7 @@ pipeline {
 
         stage('Deploy') {
             when {
-                main 'main'
+                branch 'main'
             }
             steps {
                 echo "Deploy stage started >>>>"
