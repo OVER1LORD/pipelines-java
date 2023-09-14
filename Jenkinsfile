@@ -7,25 +7,28 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
+        stage ('Checkout') {
             steps {
                 // Get some code from a GitHub repository
-            git branch:'main',
-                url:'https://github.com/OVER1LORD/pipelines-java.git'
-
-            }            
+                git branch: 'main',
+                    url: 'https://gitlab.com/nanu1605/pipelines-java.git'
+            }
         }
-
         stage('Build') {
-            steps{
+            steps {
+                // Run Maven on a Unix agent.
                 sh "mvn -Dmaven.test.failure.ignore=true clean package"
             }
-                // Run Maven on a Unix agent.
-                // To run Maven on a Windows agent, use
-                // bat "mvn -Dmaven.test.failure.ignore=true clean package"
         }
-
+        stage('Install') {
+            steps {
+                sh "mvn install"
+            }
+        }
         stage('Deploy') {
+            when {
+                branc 'main'
+            }
             steps {
                 echo "Deploy stage started >>>>"
                 deploy adapters: [tomcat9 (
@@ -46,6 +49,5 @@ pipeline {
                     archiveArtifacts 'target/*.war'
                 }
             }
-        }
     }
 }
